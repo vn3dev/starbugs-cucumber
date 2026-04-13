@@ -11,7 +11,18 @@ Before do
     @popup = Popup.new
 end
 
-After do
-    screenshot = page.save_screenshot("log/screenshot-#{Time.now.strftime("%Y-%m-%d-%H-%M-%S")}.png")
+After do |scenario|
+    screenshot = page.save_screenshot("logs/screenshots/#{scenario.__id__}.png")
     attach(screenshot, 'image/png', "Screenshot")
 end
+
+
+# PARA LOGGAR APENAS OS CENARIOS Q FALHAREM
+
+# After do |scenario|
+
+#     if (scenario.failed?)
+#         screenshot = page.save_screenshot("logs/screenshots/#{scenario.__id__}.png")
+#         attach(screenshot, 'image/png', "Screenshot")
+#     end
+# end
