@@ -37,4 +37,23 @@ class CheckoutPage
     def submit
         click_on 'Confirmar pedido'
     end
+
+    def visit_qa
+        visit 'https://starbugs-qa.vercel.app'
+    end
+
+    def add_cupom(cupom)
+        find('input[placeholder="Código do cupom"]').set(cupom)
+        click_on 'Aplicar'
+    end
+
+    def check_final_price(total)
+        final_price = find('.total .total-price')
+        expect(final_price.text).to eql total
+    end
+
+    def expired_cupom_message(message)
+        find('.notice').text
+        expect(find('.notice').text).to eql message
+    end
 end
