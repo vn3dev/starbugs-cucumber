@@ -10,3 +10,8 @@ Before do
     @order = OrderPage.new
     @popup = Popup.new
 end
+
+After do
+    screenshot = page.save_screenshot("log/screenshot-#{Time.now.strftime("%Y-%m-%d-%H-%M-%S")}.png")
+    attach(screenshot, 'image/png', "Screenshot")
+end
